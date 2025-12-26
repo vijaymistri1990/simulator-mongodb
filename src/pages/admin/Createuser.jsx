@@ -14,13 +14,13 @@ const Createuser = () => {
 
     const [initialValues, setInitialValues] = useState({
         name: '',
-        userName: '',
+        user_name: '',
         passWord: '',
     })
 
     let validationSchema = Yup.object().shape({
         name: Yup.string().required('required'),
-        userName: Yup.string().required('required'),
+        user_name: Yup.string().required('required'),
         // passWord: Yup.string().required('required'),
     })
 
@@ -41,7 +41,7 @@ const Createuser = () => {
     const handleEdit = async (values) => {
         setLoader(true)
         let data = {
-            user_name: values.userName,
+            user_name: values.user_name,
             name: values.name,
             id: state.id,
         }
@@ -56,7 +56,7 @@ const Createuser = () => {
     const handleSave = async (values) => {
         setLoader(true)
         let data = {
-            user_name: values.userName,
+            user_name: values.user_name,
             password: values.passWord,
             name: values.name
         }
@@ -69,7 +69,7 @@ const Createuser = () => {
     }
 
     function randomString() {
-        if (formik.values.userName && formik.values.name) {
+        if (formik.values.user_name && formik.values.name) {
             var result = '';
             let length = 16;
             let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -82,7 +82,7 @@ const Createuser = () => {
         if (state) {
             setInitialValues({
                 name: state.name,
-                userName: state.user_name,
+                user_name: state.user_name,
             })
 
         }
@@ -134,11 +134,11 @@ const Createuser = () => {
                         <div className='col-sm-6 mt-2'>
                             <TextField
                                 label="User Name"
-                                value={formik.values.userName}
-                                placeholder="Please enter username"
-                                onChange={(value) => formik.setFieldValue('userName', value)}
+                                value={formik.values.user_name}
+                                placeholder="Please enter user_name"
+                                onChange={(value) => formik.setFieldValue('user_name', value)}
                                 autoComplete="off"
-                                error={formik.errors.userName && formik.touched.userName ? formik.errors.userName : ''}
+                                error={formik.errors.user_name && formik.touched.user_name ? formik.errors.user_name : ''}
                             />
                         </div>
                     </div>

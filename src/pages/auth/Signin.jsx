@@ -10,17 +10,17 @@ import * as Yup from "yup";
 
 const Signin = () => {
   const history = useHistory();
-  // const [userName, setUserName] = useState('')
+  // const [user_name, setUserName] = useState('')
   // const [password, setPassWord] = useState('')
   const [loader, setLoader] = useState(false)
 
   const [initialValues, setInitialValues] = useState({
-    userName: "",
+    user_name: "",
     password: ""
   })
 
   let validationSchema = Yup.object().shape({
-    userName: Yup.string().required('required'),
+    user_name: Yup.string().required('required'),
     password: Yup.string().required('required'),
   })
 
@@ -51,17 +51,18 @@ const Signin = () => {
   const handleSave = async (values) => {
     setLoader(true)
     let data = {
-      user_name: values.userName,
+      user_name: values.user_name,
       password: values.password
     }
     const res = await ApiCall('POST', `/sign-in`, data, [])
     let response = res?.data
+    console.log(">>>>>>>>>",res.data)
     if (response?.statusCode === 200 && response?.status == "success") {
       localStorage.setItem("userData", JSON.stringify(response.data.user_data));
       localStorage.setItem("token", JSON.stringify(response.data.token));
       setCookie('userData', JSON.stringify(response.data.user_data))
       setCookie('token', JSON.stringify(response.data.token))
-      if ((response?.data?.user_data).user == 1) {
+      if ((response?.data?.user).user == 1) {
         history.push('/admin/dashboard')
       } else {
         history.push('/topic-list')
@@ -102,10 +103,10 @@ const Signin = () => {
                   placeholder="example@gmail.com"
                   autoComplete="off"
                   onKeyDown={onKeyDown}
-                  onChange={(e) => formik.setFieldValue('userName', e.target.value)} value={formik.values.userName}
+                  onChange={(e) => formik.setFieldValue('user_name', e.target.value)} value={formik.values.user_name}
                   required
                 />
-                <p style={{ color: 'red' }}>{formik.errors.userName && formik.touched.userName ? formik.errors.userName : ''}</p>
+                <p style={{ color: 'red' }}>{formik.errors.user_name && formik.touched.user_name ? formik.errors.user_name : ''}</p>
               </div>
               <div className="input-field">
                 <label htmlFor="password" className="input-label" >

@@ -25,6 +25,82 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <script>
+      // Suppress browser extension errors in console - must run immediately in head
+      (function() {
+        // Store original console methods
+        const originalError = console.error;
+        const originalWarn = console.warn;
+        const originalLog = console.log;
+        
+        // Helper function to check if error should be suppressed
+        function shouldSuppress(message) {
+          if (!message) return false;
+          const msg = String(message).toLowerCase();
+          return (
+            msg.includes('chrome://resources') ||
+            msg.includes('not allowed to load local resource') ||
+            msg.includes('rebrandtoprimeum') ||
+            msg.includes('rebrandtoprime') ||
+            msg.includes('assertion failed') ||
+            msg.includes('cr.js') ||
+            msg.includes('promise_resolver.js') ||
+            msg.includes('getrequiredelement')
+          );
+        }
+        
+        // Override console.error
+        console.error = function(...args) {
+          const errorMessage = args.join(' ');
+          if (shouldSuppress(errorMessage)) {
+            return; // Suppress these errors
+          }
+          originalError.apply(console, args);
+        };
+        
+        // Override console.warn
+        console.warn = function(...args) {
+          const errorMessage = args.join(' ');
+          if (shouldSuppress(errorMessage)) {
+            return; // Suppress these warnings
+          }
+          originalWarn.apply(console, args);
+        };
+        
+        // Override console.log (some extensions use this)
+        console.log = function(...args) {
+          const errorMessage = args.join(' ');
+          if (shouldSuppress(errorMessage)) {
+            return; // Suppress these logs
+          }
+          originalLog.apply(console, args);
+        };
+        
+        // Suppress resource loading errors (capture phase)
+        window.addEventListener('error', function(e) {
+          if (e.message && shouldSuppress(e.message)) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }
+          if (e.filename && shouldSuppress(e.filename)) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            return false;
+          }
+        }, true);
+        
+        // Suppress unhandled promise rejections
+        window.addEventListener('unhandledrejection', function(e) {
+          if (e.reason && shouldSuppress(String(e.reason))) {
+            e.preventDefault();
+            return false;
+          }
+        }, true);
+      })();
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
