@@ -1,0 +1,51 @@
+const config = {
+    "MODE": process.env.SERVER,
+    "HOST": process.env.HOST,
+    "secret": process.env.secret,
+    /* res status code */
+    'status_code_config': {
+        'OK': 200,
+        'CREATED': 201,
+        'ACCEPTED': 202,
+        'BAD_REQUEST': 400,
+        'UNAUTHORIZED': 401,
+        'PAYMENT_REQUIRED': 402,
+        'FORBIDDEN': 403,
+        'NOT_FOUND': 404,
+        'UNPROCEESSABLE_ENTITY': 422,
+        'INTERNAL_SERVER_ERROR': 500,
+        'BAD_GATEWAY': 502
+    },
+    /* res messages */
+    'en_message_config': {
+        'ERROR_NO_DATA_FOUND': 'No data found',
+        'ERROR_NOT_VALID_TOKEN': 'Not valid token data.',
+        'ERROR_SOMETHING_WRONG': 'Something went wrong!',
+        'DATA_FETCH_SUCCESSFULLY': 'data fetch successfully!',
+        'LOGIN_SUCESSFULLY': 'Login sucessfully!',
+        'DATA_ADD_SUCCESSFULLY': 'data add successfully!',
+        'DATA_RESET_SUCCESSFULLY': 'data reset successfully!',
+        'DATA_UPDATE_SUCCESSFULLY': 'data update successfully!',
+        'USER_NAME_ALREADY_EXITS': 'user name already exits!',
+        'ERROR_NO_FOUND_TOKEN': 'token not found.',
+        'USER_DELETE_SUCCESSFULLY': 'user delete successfully!',
+        'SIMULATOR_TOPIC_DELETE_SUCCESSFULLY': 'simulator topic delete successfully!',
+        'SIMULATOR_DELETE_SUCCESSFULLY': 'simulator delete successfully!',
+        'USER_UPDATE_SUCCESSFULLY': 'user update successfully!',
+        'PASSWORD_CHANGE_SUCCESSFULLY': 'password change successfully!',
+        'SIMULATOR_UPDATE_SUCCESSFULLY': 'simulator update successfully!',
+        'SIMULATOR_STATUS_UPDATE_SUCCESSFULLY': 'simulator status update successfully!',
+        'SIMULATOR_TOPICS_UPDATE_SUCCESSFULLY': 'simulator topics update successfully!',
+        'PASSWORD_UPDATE_SUCCESSFULLY': 'password update successfully!',
+        'PASSWORD_NOT_MATCH': 'password not matched!',
+        'WRONG_PASSWORD': 'wrong password!',
+    },
+    'ALLOWED_IMG_TYPE': ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/webp'],
+    "editor_url": process.env.EDITOR_URL,
+    "ACTION_ENCRYPT": "encrypt",
+    "ACTION_DECRYPT": "decrypt",
+    "simulator_type_with_meta": [0, 1, 2, 3],
+    "APP_PREFIX": process.env.SITE_PREFIX
+}
+module.exports = config
+
