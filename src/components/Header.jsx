@@ -1,22 +1,22 @@
-import React from "react";
 import Dropdown from "./Dropdown";
 import { Link, useHistory } from "react-router-dom";
 import { removeCookies } from "../helper/commonFunctions";
+import AvatarImage from "../assets/images/avatar.jpg";
 
 const Header = () => {
   const history = useHistory();
   const logout = () => {
-    removeCookies('token')
-    removeCookies('userData')
+    removeCookies("token");
+    removeCookies("userData");
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
-    history.push('/login')
-  }
+    history.push("/login");
+  };
 
   return (
     <div className="admin-header">
       <Dropdown
-        avatar={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNVvIJRlaurEx4Tu-wGtYMEBLtA1AfLbhRfzT4pkzP&s"}
+        avatar={AvatarImage}
         menu={
           <>
             <li className="dropdown-list" onClick={() => logout()}>

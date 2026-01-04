@@ -56,13 +56,12 @@ const Signin = () => {
     }
     const res = await ApiCall('POST', `/sign-in`, data, [])
     let response = res?.data
-    console.log(">>>>>>>>>",res.data)
     if (response?.statusCode === 200 && response?.status == "success") {
       localStorage.setItem("userData", JSON.stringify(response.data.user_data));
       localStorage.setItem("token", JSON.stringify(response.data.token));
       setCookie('userData', JSON.stringify(response.data.user_data))
       setCookie('token', JSON.stringify(response.data.token))
-      if ((response?.data?.user).user == 1) {
+      if ((response?.data?.user_data).user == 1) {
         history.push('/admin/dashboard')
       } else {
         history.push('/topic-list')

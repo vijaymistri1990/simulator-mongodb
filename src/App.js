@@ -1,9 +1,10 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { adminRoutes, authRoutes } from "./routes/routes";
 import Authlayout from "./layout/Authlayout";
 import Adminlayout from "./layout/Adminlayout";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/css/app.css';
+import './assets/css/style.css';
 // Multi-layout function
 const AppRoute = ({ component: Component, layout: Layout, exact, ...rest }) => (
   <Route
